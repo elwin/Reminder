@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E955650C19D36DEB0031AE44 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E955650B19D36DEB0031AE44 /* Images.xcassets */; };
 		E958003919D3685200C5A246 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E958003819D3685200C5A246 /* main.m */; };
-		E958003C19D3685200C5A246 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E958003B19D3685200C5A246 /* AppDelegate.m */; };
-		E958003F19D3685200C5A246 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E958003E19D3685200C5A246 /* ViewController.m */; };
-		E958004219D3685200C5A246 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958004019D3685200C5A246 /* Main.storyboard */; };
-		E958004419D3685200C5A246 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E958004319D3685200C5A246 /* Images.xcassets */; };
-		E958004719D3685200C5A246 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E958004519D3685200C5A246 /* LaunchScreen.xib */; };
 		E958005319D3685200C5A246 /* ReminderAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E958005219D3685200C5A246 /* ReminderAppTests.m */; };
+		E958005D19D368BA00C5A246 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958005C19D368BA00C5A246 /* LaunchScreen.storyboard */; };
+		E958009E19D36D1B00C5A246 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009219D36D1B00C5A246 /* AppDelegate.m */; };
+		E958009F19D36D1B00C5A246 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958009319D36D1B00C5A246 /* Main.storyboard */; };
+		E95800A019D36D1B00C5A246 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009519D36D1B00C5A246 /* Data.m */; };
+		E95800A119D36D1B00C5A246 /* Cells.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009719D36D1B00C5A246 /* Cells.m */; };
+		E95800A219D36D1B00C5A246 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009919D36D1B00C5A246 /* Master.m */; };
+		E95800A319D36D1B00C5A246 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009B19D36D1B00C5A246 /* DetailView.m */; };
+		E95800A419D36D1B00C5A246 /* Weekdays.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009D19D36D1B00C5A246 /* Weekdays.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +31,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E955650B19D36DEB0031AE44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E958003319D3685200C5A246 /* ReminderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958003719D3685200C5A246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E958003819D3685200C5A246 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E958003A19D3685200C5A246 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E958003B19D3685200C5A246 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E958003D19D3685200C5A246 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E958003E19D3685200C5A246 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E958004119D3685200C5A246 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E958004319D3685200C5A246 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E958004619D3685200C5A246 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E958004C19D3685200C5A246 /* ReminderAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReminderAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958005119D3685200C5A246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E958005219D3685200C5A246 /* ReminderAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReminderAppTests.m; sourceTree = "<group>"; };
+		E958005C19D368BA00C5A246 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E958009119D36D1B00C5A246 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E958009219D36D1B00C5A246 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E958009319D36D1B00C5A246 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E958009419D36D1B00C5A246 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		E958009519D36D1B00C5A246 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
+		E958009619D36D1B00C5A246 /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cells.h; sourceTree = "<group>"; };
+		E958009719D36D1B00C5A246 /* Cells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cells.m; sourceTree = "<group>"; };
+		E958009819D36D1B00C5A246 /* Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Master.h; sourceTree = "<group>"; };
+		E958009919D36D1B00C5A246 /* Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Master.m; sourceTree = "<group>"; };
+		E958009A19D36D1B00C5A246 /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
+		E958009B19D36D1B00C5A246 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
+		E958009C19D36D1B00C5A246 /* Weekdays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weekdays.h; sourceTree = "<group>"; };
+		E958009D19D36D1B00C5A246 /* Weekdays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weekdays.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +93,21 @@
 		E958003519D3685200C5A246 /* ReminderApp */ = {
 			isa = PBXGroup;
 			children = (
-				E958003A19D3685200C5A246 /* AppDelegate.h */,
-				E958003B19D3685200C5A246 /* AppDelegate.m */,
-				E958003D19D3685200C5A246 /* ViewController.h */,
-				E958003E19D3685200C5A246 /* ViewController.m */,
-				E958004019D3685200C5A246 /* Main.storyboard */,
-				E958004319D3685200C5A246 /* Images.xcassets */,
-				E958004519D3685200C5A246 /* LaunchScreen.xib */,
+				E958009119D36D1B00C5A246 /* AppDelegate.h */,
+				E958009219D36D1B00C5A246 /* AppDelegate.m */,
+				E958009319D36D1B00C5A246 /* Main.storyboard */,
+				E958009419D36D1B00C5A246 /* Data.h */,
+				E958009519D36D1B00C5A246 /* Data.m */,
+				E958009619D36D1B00C5A246 /* Cells.h */,
+				E958009719D36D1B00C5A246 /* Cells.m */,
+				E958009819D36D1B00C5A246 /* Master.h */,
+				E958009919D36D1B00C5A246 /* Master.m */,
+				E958009A19D36D1B00C5A246 /* DetailView.h */,
+				E958009B19D36D1B00C5A246 /* DetailView.m */,
+				E958009C19D36D1B00C5A246 /* Weekdays.h */,
+				E958009D19D36D1B00C5A246 /* Weekdays.m */,
+				E958005C19D368BA00C5A246 /* LaunchScreen.storyboard */,
+				E955650B19D36DEB0031AE44 /* Images.xcassets */,
 				E958003619D3685200C5A246 /* Supporting Files */,
 			);
 			path = ReminderApp;
@@ -126,6 +146,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E958005619D3685200C5A246 /* Build configuration list for PBXNativeTarget "ReminderApp" */;
 			buildPhases = (
+				E954B82319D8AF39008623E7 /* ShellScript */,
 				E958002F19D3685200C5A246 /* Sources */,
 				E958003019D3685200C5A246 /* Frameworks */,
 				E958003119D3685200C5A246 /* Resources */,
@@ -168,6 +189,7 @@
 				TargetAttributes = {
 					E958003219D3685200C5A246 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = J7R2TARF35;
 					};
 					E958004B19D3685200C5A246 = {
 						CreatedOnToolsVersion = 6.0;
@@ -199,9 +221,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E958004219D3685200C5A246 /* Main.storyboard in Resources */,
-				E958004719D3685200C5A246 /* LaunchScreen.xib in Resources */,
-				E958004419D3685200C5A246 /* Images.xcassets in Resources */,
+				E955650C19D36DEB0031AE44 /* Images.xcassets in Resources */,
+				E958005D19D368BA00C5A246 /* LaunchScreen.storyboard in Resources */,
+				E958009F19D36D1B00C5A246 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,14 +236,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E954B82319D8AF39008623E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E958002F19D3685200C5A246 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E958003F19D3685200C5A246 /* ViewController.m in Sources */,
-				E958003C19D3685200C5A246 /* AppDelegate.m in Sources */,
+				E958009E19D36D1B00C5A246 /* AppDelegate.m in Sources */,
+				E95800A119D36D1B00C5A246 /* Cells.m in Sources */,
 				E958003919D3685200C5A246 /* main.m in Sources */,
+				E95800A019D36D1B00C5A246 /* Data.m in Sources */,
+				E95800A419D36D1B00C5A246 /* Weekdays.m in Sources */,
+				E95800A219D36D1B00C5A246 /* Master.m in Sources */,
+				E95800A319D36D1B00C5A246 /* DetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,25 +284,6 @@
 			targetProxy = E958004D19D3685200C5A246 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E958004019D3685200C5A246 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E958004119D3685200C5A246 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E958004519D3685200C5A246 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E958004619D3685200C5A246 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E958005419D3685200C5A246 /* Debug */ = {
@@ -343,7 +366,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = ReminderApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -353,7 +379,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = ReminderApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -412,6 +441,7 @@
 				E958005819D3685200C5A246 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E958005919D3685200C5A246 /* Build configuration list for PBXNativeTarget "ReminderAppTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +450,7 @@
 				E958005B19D3685200C5A246 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
