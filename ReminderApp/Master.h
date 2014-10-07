@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  Master.h
 //  Reminder
 //
 //  Created by Elwin on 11/08/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface Master : UITableViewController
 
 @end
