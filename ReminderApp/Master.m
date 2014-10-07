@@ -23,7 +23,6 @@ static NSString *segue = @"Segue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
 	[self firstRunWithNewBuild];
 	
 	Data *data = [Data sharedClass];
