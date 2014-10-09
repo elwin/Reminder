@@ -26,8 +26,7 @@
 		self.selectionStyle = UITableViewCellSelectionStyleDefault;
 			
 		// Setting Background Color
-//		self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
-		self.backgroundColor = [UIColor greenColor];
+		self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
 		
 		UIView *selectedBackgroundView = [[UIView alloc] init];
 		selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.453 green:0.097 blue:0.735 alpha:1];
