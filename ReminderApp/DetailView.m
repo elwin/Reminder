@@ -34,7 +34,7 @@ static NSString *reuseIdentifier = @"detailCell";
 	self.navigationItem.title = [self.itemDictionary valueForKey:kDescriptionKey];
 	self.timePicker.date = [self.itemDictionary valueForKey:kTimeKey];
 	self.timePicker.backgroundColor = [UIColor whiteColor];
-	[data hasPermissionForNotifications];
+	[data requestPermission];
 	
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
 }
@@ -59,7 +59,7 @@ static NSString *reuseIdentifier = @"detailCell";
 		
 		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		[gregorian setLocale:[NSLocale currentLocale]];
-		NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:self.timePicker.date];
+		NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:self.timePicker.date];
 		NSDate *date = [gregorian dateFromComponents:components];
 		[self.itemDictionary setValue:date forKey:kTimeKey];
 		[data.items replaceObjectAtIndex:self.indexPath.row withObject:self.itemDictionary];
@@ -67,7 +67,7 @@ static NSString *reuseIdentifier = @"detailCell";
 		[data removeNotificationForDictionary:data.items[self.indexPath.row]];
 		BOOL active = [[data.items[self.indexPath.row] valueForKey:kActiveKey] boolValue];
 		if (active) {
-			[data scheduleNotificationForNextWeekday:data.items[self.indexPath.row]];
+			[data scheduleNotificationForDictionary:data.items[self.indexPath.row]];
 		}
 	}
 }

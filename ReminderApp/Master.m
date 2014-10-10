@@ -27,6 +27,7 @@ static NSString *segue = @"Segue";
 	
 	Data *data = [Data sharedClass];
 	[data loadData];
+	[data rescheduleAllNotifications];
 	
 	// Prepare TableView & TableViewCells
 	UITableView *tableView = (id)[self.view viewWithTag:1];
@@ -52,20 +53,18 @@ static NSString *segue = @"Segue";
 
 - (void)firstRunWithNewBuild {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	float buildVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+	
 	if (![userDefaults valueForKey:@"version"]) {
-		// No Build Number set
+		// First time the App has been started
+		[userDefaults setFloat:buildVersion forKey:@"version"];
 		
-		[[UIApplication sharedApplication] cancelAllLocalNotifications];
+	} else if ([[NSUserDefaults standardUserDefaults] floatForKey:@"version"] == buildVersion) {
+		// Same Build version
 		
-		Data *data = [Data sharedClass];
-		[data scheduleMissingNotifications];
-		
-		[userDefaults setFloat:[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue] forKey:@"version"];
-	} else if ([[NSUserDefaults standardUserDefaults] floatForKey:@"version"] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue]) {
-		// Same Build Number
 	} else {
-		// New Build Number
-		[userDefaults setFloat:[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue] forKey:@"version"];
+		// New Build version
+		[userDefaults setFloat:buildVersion forKey:@"version"];
 	}
 	
 	NSLog(@"Current Build Number: %@", [userDefaults valueForKey:@"version"]);
@@ -73,7 +72,6 @@ static NSString *segue = @"Segue";
 }
 - (void)applicationWillResignActive:(NSNotification *)notification {
 	Data *data = [Data sharedClass];
-	[data scheduleMissingNotifications];
 	[data saveData];
 }
 

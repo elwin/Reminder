@@ -53,7 +53,7 @@
 	[repeatNotification setAlertBody:alertBody];
 	[repeatNotification setFireDate:fireDate];
 	[repeatNotification setUserInfo:userInfo];
-	[repeatNotification setCategory:categoryIdentifier];
+	[repeatNotification setCategory:repeatCategoryIdentifier];
 	
 	[application scheduleLocalNotification:repeatNotification];
 	

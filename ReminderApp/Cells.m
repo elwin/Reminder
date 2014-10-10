@@ -81,7 +81,7 @@
 	Data *data = [Data sharedClass];
 	if (self.currentStateSwitch.isOn) {
 		[data.items[self.tag] setValue:[NSNumber numberWithBool:YES] forKey:kActiveKey];
-		[data scheduleNotificationForNextWeekday:data.items[self.tag]];
+		[data scheduleNotificationForDictionary:data.items[self.tag]];
 	} else if (!self.currentStateSwitch.isOn) {
 		[data.items[self.tag] setValue:[NSNumber numberWithBool:NO] forKey:kActiveKey];
 		[data removeNotificationForDictionary:data.items[self.tag]];
