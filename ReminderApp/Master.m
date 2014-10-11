@@ -31,7 +31,10 @@ static NSString *segue = @"Segue";
 	
 	// Prepare TableView & TableViewCells
 	UITableView *tableView = (id)[self.view viewWithTag:1];
-	[tableView registerClass:[Cells class] forCellReuseIdentifier:reuseIdentifier];
+	UINib *nib = [UINib nibWithNibName:@"CustomCell" bundle:nil];
+	[tableView registerNib:nib forCellReuseIdentifier:reuseIdentifier];
+	
+//	[tableView registerClass:[Cells class] forCellReuseIdentifier:reuseIdentifier];
 	[tableView setRowHeight:98];
 	[tableView setBackgroundColor:[UIColor colorWithWhite:0.1 alpha:1]];
 	[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -125,13 +128,20 @@ static NSString *segue = @"Segue";
 		[detailedString appendString:@", every "];
 		[detailedString appendString:tempString];
 	}
-	cell.detailedDescription = detailedString;
+	cell.detailedDescriptionLabel.text = detailedString;
 	
 	cell.tag = indexPath.row;
 	cell.currentStateSwitch.on = [[data.items[indexPath.row] valueForKey:kActiveKey] boolValue];
 	cell.currentStateSwitch.hidden = self.editing;
 	
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(Cells *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	[cell setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]]];
+	[cell.currentStateSwitch setTintColor:[UIColor colorWithWhite:1.0 alpha:0.9]];
+	[cell.currentStateSwitch setOnTintColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
+	[cell.currentStateSwitch addTarget:cell action:@selector(switchDidChange) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -165,6 +175,17 @@ static NSString *segue = @"Segue";
 		[self.navigationItem.rightBarButtonItem setEnabled:YES];
 	}
 }
+
+//- (void)switchDidChange:(Cells *)cell {
+//	Data *data = [Data sharedClass];
+//	if (cell.currentStateSwitch.isOn) {
+//		[data.items[cell.tag] setValue:[NSNumber numberWithBool:YES] forKey:kActiveKey];
+//		[data scheduleNotificationForDictionary:data.items[cell.tag]];
+//	} else if (!cell.currentStateSwitch.isOn) {
+//		[data.items[cell.tag] setValue:[NSNumber numberWithBool:NO] forKey:kActiveKey];
+//		[data removeNotificationForDictionary:data.items[cell.tag]];
+//	}
+//}
 
 //// Override to support rearranging the table view.
 //- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {

@@ -10,10 +10,9 @@
 
 @interface Cells : UITableViewCell
 
-@property (copy, nonatomic) NSString *description;
-@property (copy, nonatomic) NSString *detailedDescription;
-@property (strong, nonatomic) UISwitch *currentStateSwitch;
-@property (strong, nonatomic) UILabel *descriptionLabel;
-@property (strong, nonatomic) UILabel *detailedDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UISwitch *currentStateSwitch;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailedDescriptionLabel;
+- (void)switchDidChange;
 
 @end

@@ -18,6 +18,7 @@
 		E95800A219D36D1B00C5A246 /* Master.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009919D36D1B00C5A246 /* Master.m */; };
 		E95800A319D36D1B00C5A246 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009B19D36D1B00C5A246 /* DetailView.m */; };
 		E95800A419D36D1B00C5A246 /* Weekdays.m in Sources */ = {isa = PBXBuildFile; fileRef = E958009D19D36D1B00C5A246 /* Weekdays.m */; };
+		E9891DBB19E9749E00D67ADC /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9891DBA19E9749E00D67ADC /* CustomCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		E958009B19D36D1B00C5A246 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		E958009C19D36D1B00C5A246 /* Weekdays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weekdays.h; sourceTree = "<group>"; };
 		E958009D19D36D1B00C5A246 /* Weekdays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weekdays.m; sourceTree = "<group>"; };
+		E9891DBA19E9749E00D67ADC /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				E958009519D36D1B00C5A246 /* Data.m */,
 				E958009619D36D1B00C5A246 /* Cells.h */,
 				E958009719D36D1B00C5A246 /* Cells.m */,
+				E9891DBA19E9749E00D67ADC /* CustomCell.xib */,
 				E958009819D36D1B00C5A246 /* Master.h */,
 				E958009919D36D1B00C5A246 /* Master.m */,
 				E958009A19D36D1B00C5A246 /* DetailView.h */,
@@ -223,6 +226,7 @@
 			files = (
 				E955650C19D36DEB0031AE44 /* Images.xcassets in Resources */,
 				E958005D19D368BA00C5A246 /* LaunchScreen.storyboard in Resources */,
+				E9891DBB19E9749E00D67ADC /* CustomCell.xib in Resources */,
 				E958009F19D36D1B00C5A246 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
