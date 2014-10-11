@@ -89,7 +89,8 @@ static NSString *reuseIdentifier = @"detailCell";
 	
 	if (indexPath.row == 0) {
 		cell.detailTextLabel.hidden = true;
-		self.textField = [[UITextField alloc] initWithFrame:CGRectMake(145, 0, 160, 44)];
+		CGFloat width = self.view.frame.size.width - 145 - 15;
+		self.textField = [[UITextField alloc] initWithFrame:CGRectMake(145, 0, width, 44)];
 		self.textField.textAlignment = NSTextAlignmentRight;
 		self.textField.textColor = cell.detailTextLabel.textColor;
 		self.textField.adjustsFontSizeToFitWidth = true;
