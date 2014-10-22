@@ -34,7 +34,7 @@ static NSString *reuseIdentifier = @"detailCell";
 	self.navigationItem.title = [self.itemDictionary valueForKey:kDescriptionKey];
 	self.timePicker.date = [self.itemDictionary valueForKey:kTimeKey];
 	self.timePicker.backgroundColor = [UIColor whiteColor];
-	[data hasPermissionForNotifications];
+	[data requestPermission];
 	
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
 }
@@ -59,7 +59,7 @@ static NSString *reuseIdentifier = @"detailCell";
 		
 		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		[gregorian setLocale:[NSLocale currentLocale]];
-		NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:self.timePicker.date];
+		NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:self.timePicker.date];
 		NSDate *date = [gregorian dateFromComponents:components];
 		[self.itemDictionary setValue:date forKey:kTimeKey];
 		[data.items replaceObjectAtIndex:self.indexPath.row withObject:self.itemDictionary];
@@ -67,7 +67,7 @@ static NSString *reuseIdentifier = @"detailCell";
 		[data removeNotificationForDictionary:data.items[self.indexPath.row]];
 		BOOL active = [[data.items[self.indexPath.row] valueForKey:kActiveKey] boolValue];
 		if (active) {
-			[data scheduleNotificationForNextWeekday:data.items[self.indexPath.row]];
+			[data scheduleNotificationForDictionary:data.items[self.indexPath.row]];
 		}
 	}
 }
@@ -89,7 +89,8 @@ static NSString *reuseIdentifier = @"detailCell";
 	
 	if (indexPath.row == 0) {
 		cell.detailTextLabel.hidden = true;
-		self.textField = [[UITextField alloc] initWithFrame:CGRectMake(145, 0, 160, 44)];
+		CGFloat width = self.view.frame.size.width - 145 - 15;
+		self.textField = [[UITextField alloc] initWithFrame:CGRectMake(145, 0, width, 44)];
 		self.textField.textAlignment = NSTextAlignmentRight;
 		self.textField.textColor = cell.detailTextLabel.textColor;
 		self.textField.adjustsFontSizeToFitWidth = true;
@@ -109,35 +110,27 @@ static NSString *reuseIdentifier = @"detailCell";
     return cell;
 }
 
-// Actually dismisses Keyboard for some unknown reason...
+// Dismiss Keyboard, when "Done"-Button is pressed
 - (void)dismissKeyboard {
+	[self resignFirstResponder];
 }
 
-//- (IBAction)scrollToTextField:(id)sender {
-//}
-
-//- (void)keyboardWasShown:(NSNotification *)notification {
-//	NSDictionary *keyboardDictionary = [notification userInfo];
-//	CGRect keyboardSize = [[keyboardDictionary objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-//	UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, keyboardSize.size.height, 0);
-//	self.tableView.contentInset = insets
-//	[self.tableView setScrollIndicatorInsets:insets];
-//}
-
-
+// Allow selection of Second Cell ("Repeat")
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
 		return nil;
 	} else return indexPath;
 }
 
+// Deselect Cell after it has been pressed
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+// Calls Weekday Controller, Information are writte into a public array in the WeekdayController
+// Informations: Enabled or Disabled
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	Weekdays *weekdayView = [segue destinationViewController];

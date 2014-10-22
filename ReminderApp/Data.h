@@ -17,7 +17,7 @@ static NSString * const kTimeKey = @"time";
 static NSString * const kWeekdayKey = @"weekday";
 static NSString * const kActiveKey = @"active";
 
-static NSString * const categoryIdentifier = @"REPEAT_CATEGORY";
+static NSString * const repeatCategoryIdentifier = @"REPEAT_CATEGORY";
 
 @interface Data : NSObject
 
@@ -27,13 +27,14 @@ static NSString * const categoryIdentifier = @"REPEAT_CATEGORY";
 - (void)loadData;
 - (void)saveData;
 - (NSString *)dataFilePath;
-- (NSString *)notificationsFilePath;
 - (NSMutableDictionary *)getNewItem;
-- (void)scheduleNotificationForNextWeekday:(NSDictionary *)item;
+
+- (void)scheduleNotificationForDictionary:(NSDictionary *)item;
 - (void)removeNotificationForDictionary:(NSDictionary*)item;
-- (void)scheduleMissingNotifications;
+- (void)requestPermission;
+- (void)rescheduleAllNotifications;
+
 - (NSString *)getWeekdaysFromArray:(NSArray *)weekdays;
 - (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to;
-- (BOOL)hasPermissionForNotifications;
 
 @end
