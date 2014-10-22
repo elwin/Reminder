@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -29,7 +30,7 @@
                         </constraints>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSo-vv-AQC">
-                        <rect key="frame" x="25" y="60" width="216" height="25"/>
+                        <rect key="frame" x="25" y="59" width="216" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="xE0-lK-kNo"/>
                         </constraints>
@@ -39,11 +40,11 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="FPh-uo-qqJ" secondAttribute="trailing" constant="14" id="5Te-aO-5Gv"/>
+                    <constraint firstAttribute="trailing" secondItem="FPh-uo-qqJ" secondAttribute="trailing" constant="22" id="5Te-aO-5Gv"/>
                     <constraint firstItem="HSo-vv-AQC" firstAttribute="leading" secondItem="Zsp-zm-mfY" secondAttribute="leadingMargin" constant="17" id="Aeu-jL-YMl"/>
                     <constraint firstItem="FPh-uo-qqJ" firstAttribute="leading" secondItem="HSo-vv-AQC" secondAttribute="trailing" constant="8" id="Gev-Yy-Hu6"/>
                     <constraint firstItem="4E2-3h-RmZ" firstAttribute="leading" secondItem="Zsp-zm-mfY" secondAttribute="leadingMargin" constant="17" id="KvF-cf-U02"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="HSo-vv-AQC" secondAttribute="bottom" constant="4" id="UZl-as-3Z1"/>
+                    <constraint firstAttribute="bottom" secondItem="HSo-vv-AQC" secondAttribute="bottom" constant="13" id="UZl-as-3Z1"/>
                     <constraint firstAttribute="centerY" secondItem="FPh-uo-qqJ" secondAttribute="centerY" id="XMx-iG-yYn"/>
                     <constraint firstItem="4E2-3h-RmZ" firstAttribute="top" secondItem="Zsp-zm-mfY" secondAttribute="topMargin" constant="11" id="gUp-EG-qbf"/>
                     <constraint firstItem="FPh-uo-qqJ" firstAttribute="leading" secondItem="4E2-3h-RmZ" secondAttribute="trailing" constant="8" id="lIf-h4-l7i"/>

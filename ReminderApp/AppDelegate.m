@@ -42,10 +42,11 @@
 }
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
-
-	NSTimeInterval timeInterval = 60 * 5; // 5 Minutes
-
+	
+	// Schedule Notification with same attributed in 5 Minutes
+	
 	NSString *alertBody = notification.alertBody;
+	NSTimeInterval timeInterval = 60 * 5; // 5 Minutes
 	NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:timeInterval];
 	NSDictionary *userInfo = notification.userInfo;
 	
@@ -53,6 +54,7 @@
 	[repeatNotification setAlertBody:alertBody];
 	[repeatNotification setFireDate:fireDate];
 	[repeatNotification setUserInfo:userInfo];
+	[repeatNotification setSoundName:UILocalNotificationDefaultSoundName];
 	[repeatNotification setCategory:repeatCategoryIdentifier];
 	
 	[application scheduleLocalNotification:repeatNotification];

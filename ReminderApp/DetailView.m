@@ -110,35 +110,27 @@ static NSString *reuseIdentifier = @"detailCell";
     return cell;
 }
 
-// Actually dismisses Keyboard for some unknown reason...
+// Dismiss Keyboard, when "Done"-Button is pressed
 - (void)dismissKeyboard {
+	[self resignFirstResponder];
 }
 
-//- (IBAction)scrollToTextField:(id)sender {
-//}
-
-//- (void)keyboardWasShown:(NSNotification *)notification {
-//	NSDictionary *keyboardDictionary = [notification userInfo];
-//	CGRect keyboardSize = [[keyboardDictionary objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-//	UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, keyboardSize.size.height, 0);
-//	self.tableView.contentInset = insets
-//	[self.tableView setScrollIndicatorInsets:insets];
-//}
-
-
+// Allow selection of Second Cell ("Repeat")
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
 		return nil;
 	} else return indexPath;
 }
 
+// Deselect Cell after it has been pressed
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+// Calls Weekday Controller, Information are writte into a public array in the WeekdayController
+// Informations: Enabled or Disabled
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	Weekdays *weekdayView = [segue destinationViewController];

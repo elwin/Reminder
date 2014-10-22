@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1be-5Z-6IU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1be-5Z-6IU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -103,10 +103,10 @@
                         <constraints>
                             <constraint firstItem="2Lg-0O-zTQ" firstAttribute="top" secondItem="ymF-Bn-pcl" secondAttribute="topMargin" id="4sv-6G-sGA"/>
                             <constraint firstItem="fPc-Ha-L5a" firstAttribute="top" secondItem="2Lg-0O-zTQ" secondAttribute="bottom" constant="8" id="FUO-Xn-XJj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2Lg-0O-zTQ" secondAttribute="trailing" constant="-16" id="h5n-N9-uHz"/>
+                            <constraint firstAttribute="trailing" secondItem="2Lg-0O-zTQ" secondAttribute="trailing" id="h5n-N9-uHz"/>
                             <constraint firstItem="fPc-Ha-L5a" firstAttribute="leading" secondItem="ymF-Bn-pcl" secondAttribute="leadingMargin" constant="-16" id="i8J-F5-rAC"/>
                             <constraint firstItem="2Lg-0O-zTQ" firstAttribute="leading" secondItem="ymF-Bn-pcl" secondAttribute="leadingMargin" constant="-16" id="ibb-V9-eOa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fPc-Ha-L5a" secondAttribute="trailing" constant="-16" id="x3F-P0-K34"/>
+                            <constraint firstAttribute="trailing" secondItem="fPc-Ha-L5a" secondAttribute="trailing" id="x3F-P0-K34"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dgb-WH-wSb">
@@ -158,6 +158,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bBN-rh-EP5">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uSA-hS-wCP">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Zg8-vG-mGu" kind="relationship" relationship="rootViewController" id="8Wf-80-xnX"/>
                     </connections>

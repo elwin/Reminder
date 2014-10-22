@@ -48,6 +48,7 @@
 		NSLog(@"Error: Content could not be written to file");
 	}
 	
+	
 	// Prints all the scheduled Notifications the console
 	UIApplication *application = [UIApplication sharedApplication];
 	NSArray *localNotifications = [application scheduledLocalNotifications];
@@ -75,6 +76,8 @@
 	UIUserNotificationSettings *userNotificationSettings = [application currentUserNotificationSettings];
 	
 	// iOS 8 requires a permission from the User to schedule Notifications
+	// Requests for permission, if denied function returns
+	
 	if (iOSVersion >= 8) {
 		[self requestPermission];
 		if (!([userNotificationSettings types] & UIUserNotificationTypeAlert)) {
@@ -89,7 +92,7 @@
 	NSArray *weekdays			= [item valueForKey:kWeekdayKey];
 	UILocalNotification *notification = [[UILocalNotification alloc] init];
 
-	// Schedule Notification if specific weekday is enabled
+	// Schedule Notification for specific weekday
 	for (int i = 0; i < [weekdays count]; i++) {
 		if ([weekdays[i] isEqualToNumber:[NSNumber numberWithBool:YES]]) {
 			
@@ -99,7 +102,7 @@
 			[notification setUserInfo:uniqueID];
 			[notification setTimeZone:[NSTimeZone localTimeZone]];
 			[notification setCategory:repeatCategoryIdentifier];
-			[notification setRepeatInterval:NSWeekdayCalendarUnit];
+			[notification setRepeatInterval:NSWeekCalendarUnit];
 			if ([userNotificationSettings types] & UIUserNotificationTypeSound) {
 				[notification setSoundName:UILocalNotificationDefaultSoundName];
 			}
@@ -194,6 +197,7 @@
 	return [[NSMutableDictionary alloc] initWithObjectsAndKeys:description, kDescriptionKey, uniqueID, kUniqueID, date, kTimeKey, weekdays, kWeekdayKey, active, kActiveKey, nil];
 }
 
+// Returns the active Weekdays in textform
 - (NSString *)getWeekdaysFromArray:(NSArray *)weekdays {
 	NSMutableArray *stringArray = [[NSMutableArray alloc] init];
 	NSArray *weekdaysShort = @[@"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat"];
@@ -204,6 +208,9 @@
 			[stringArray addObject:weekdaysShort[i]];
 		}
 	}
+	
+	// In case the String is empty it states "Never"
+	// In case everyday is active, the String states "Everyday"
 	if ([stringArray count] == 0) {
 		return @"Never";
 	} else if ([stringArray count] == 7) {
@@ -216,6 +223,7 @@
 		}
 	}
 	
+	// Adds the Comma inbetween Weekdays
 	NSMutableString *string = [[NSMutableString alloc] init];
 	for (int i = 0; i < ([stringArray count] - 1 ); i++) {
 		[string appendString:stringArray[i]];
