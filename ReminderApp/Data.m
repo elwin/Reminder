@@ -11,6 +11,9 @@
 
 @implementation Data
 
+/*!
+ * @brief Returns the singleton app instance.
+ */
 + (instancetype)sharedClass {
     static Data *shared = nil;
     static dispatch_once_t onceToken;
@@ -29,7 +32,9 @@
 	return [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
 }
 
-// Loads the File and writes its content to an array
+/*!
+ * @brief Loads the content of the data.plist file and writes it into the newly allocated mutable array "items". In case the file does not exists a new one is created.
+ */
 - (void)loadData {
 	NSString *filePath = [self dataFilePath];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -40,7 +45,10 @@
 	}
 }
 
-// Writes the content of the array to a file and saves it
+
+/*!
+ * @brief Stores the content of the array "items" into the file data.plist.
+ */
 - (void)saveData {
 	NSString *filePath = [self dataFilePath];
 	if ([self.items writeToFile:filePath atomically:YES]) {
@@ -62,8 +70,11 @@
 
 #pragma mark - Notification handling
 
-// Takes up a Dictionary which containts various informations
-// to schedule a notification
+/*!
+ * @brief Schedules a notification with the given NSDictionary. Does not notify the User if notification permission is not given.
+ * @param item NSDictionary with various values to create a Notification, namely if active or not (boolean), description (NSString), fire date (NSDate), unique ID (NSDictionary) and active weekdays (NSArray with booleans).
+ * @warning Dictionary has to use the keys given in the "Data" headerfile!
+ */
 - (void)scheduleNotificationForDictionary:(NSDictionary *)item {
 	BOOL active = [[item valueForKey:kActiveKey] boolValue];
 	if (!active) {
@@ -125,7 +136,10 @@
 	return [gregorian dateFromComponents:components];
 }
 
-// Takes up a Dictionary to remove all related notifications
+/*!
+ * @brief Scans through all the scheduled notifications and searches for the given uniqueID and removes all associated Notifications.
+ * @param item NSDictionary, important is the uniqueID.
+ */
 - (void)removeNotificationForDictionary:(NSDictionary*)item {
 	
 	UIApplication *application = [UIApplication sharedApplication];
@@ -156,8 +170,10 @@
 	}
 }
 
-// Asks the User for permission to send Notifications
-- (void)requestPermission {
+/*!
+ * @brief If permission was not given yet it asks for and registeres Category with "Repeat"-Action for identifier repeatCategoryIdentifier.
+ */
+ - (void)requestPermission {
 	UIMutableUserNotificationAction *repeatAction = [[UIMutableUserNotificationAction alloc] init];
 	[repeatAction setIdentifier:@"REPEAT_ACTION"];
 	[repeatAction setDestructive:NO];
@@ -177,8 +193,10 @@
 
 # pragma mark - Items handling
 
-// Creates a new Dictionary which contains preset information
-// for a reminder, i.e. current time & current weekday
+/*!
+ * @brief Creates an instance of NSMutableArray with default values: "New Reminder" as description, current time and weekday, and a randomly generated uniqueID. The reminder is turned on by default.
+ * @return An instance of NSMutableDictionary with preset values.
+ */
 - (NSMutableDictionary *)getNewItem {
 	NSString *description = @"New Reminder";
 	
@@ -197,44 +215,118 @@
 	return [[NSMutableDictionary alloc] initWithObjectsAndKeys:description, kDescriptionKey, uniqueID, kUniqueID, date, kTimeKey, weekdays, kWeekdayKey, active, kActiveKey, nil];
 }
 
-// Returns the active Weekdays in textform
-- (NSString *)getWeekdaysFromArray:(NSArray *)weekdays {
-	NSMutableArray *stringArray = [[NSMutableArray alloc] init];
-	NSArray *weekdaysShort = @[@"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat"];
-	NSArray *weekdaysLong = @[@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturay"];
+/*!
+ * @brief Creates a String with all active weekdays, preceeded by "Every". In case no weekday is active, it returns "Never". When all weekdays are active, it returns "Everyday". Otherwise the weekdays, which are shortened when there is more than one.
+ * @param weekdays An array with booleans, where index 0 corresponds to Sunday and index 6 to Saturday.
+ * @return An Instance of NSString, with a description of the active weekdays.
+ */
+- (NSString *)weekdayString:(NSArray *)weekdays {
 	
-	for (int i = 0; i < 7; i++) {
+	NSMutableArray *activeWeekdays = [[NSMutableArray alloc] init];
+	NSInteger activeDays = 0;
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	
+	// Check how many Days are active
+	for (int i = 0; i < [weekdays count]; i++) {
 		if ([weekdays[i] boolValue]) {
-			[stringArray addObject:weekdaysShort[i]];
+			activeDays++;
 		}
 	}
 	
-	// In case the String is empty it states "Never"
-	// In case everyday is active, the String states "Everyday"
-	if ([stringArray count] == 0) {
+	// Prepare String / Date Format accordingly to number of active Days
+	if (activeDays == 0) {
 		return @"Never";
-	} else if ([stringArray count] == 7) {
+	} else if (activeDays == 1) {
+		[dateFormatter setDateFormat:@"EEEE"];
+	} else if (activeDays == 7) {
 		return @"Everyday";
-	} else if ([stringArray count] == 1) {
-		for (int i = 0; i < 7; i++) {
-			if ([weekdays[i] boolValue]) {
-				return weekdaysLong[i];
-			}
+	} else {
+		[dateFormatter setDateFormat:@"EE"];
+	}
+	
+	// Add Weekday to String
+	for (int i = 0; i < [weekdays count]; i++) {
+		if ([weekdays[i] boolValue]) {
+			NSDate *date = [self getNextDateForWeekday:(i + 1) andDate:[NSDate date]];
+			[activeWeekdays addObject:[dateFormatter stringFromDate:date]];
 		}
 	}
 	
-	// Adds the Comma inbetween Weekdays
-	NSMutableString *string = [[NSMutableString alloc] init];
-	for (int i = 0; i < ([stringArray count] - 1 ); i++) {
-		[string appendString:stringArray[i]];
-		[string appendString:@", "];
-	} [string appendString:stringArray[[stringArray count] - 1]];
+	NSMutableString *weekdaysString = [[NSMutableString alloc] initWithString:@"every "];
 	
-	return string;
+	for (int i = 0; i < [activeWeekdays count] - 1; i++) {
+		[weekdaysString appendFormat:@"%@, ", activeWeekdays[i]];
+	}
+	
+	NSUInteger i = [activeWeekdays count] - 1;
+	[weekdaysString appendString:activeWeekdays[i]];
+	
+	return weekdaysString;
 }
 
-// Used to reorder the items on the Master-view
+/*!
+ * @brief Creates a String with all active weekdays. In case no weekday is active, it returns "Never". When all weekdays are active, it returns "Everyday". Otherwise it the weekdays, which are shortened when there is more than one.
+ * @param weekdays An array with booleans, where index 0 corresponds to Sunday and index 6 to Saturday.
+ * @return An Instance of NSString, with a description of the active weekdays.
+ */
+- (NSString *)weekdayStringPlain:(NSArray *)weekdays {
+	NSMutableArray *activeWeekdays = [[NSMutableArray alloc] init];
+	NSInteger activeDays = 0;
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"EE"];
+	
+	if ([weekdays count] != 7) {
+		NSLog(@"Warning: Array with weekdays contains more or less than 7 booleans!");
+	}
+	
+	// Check how many Days are active
+	for (int i = 0; i < [weekdays count]; i++) {
+		if ([weekdays[i] boolValue]) {
+			activeDays++;
+		}
+	}
+	
+	// Prepare String / Date Format accordingly to number of active Days
+	if (activeDays == 0) {
+		return @"Never";
+	} else if (activeDays == 1) {
+		[dateFormatter setDateFormat:@"EEEE"];
+	} else if (activeDays == 7) {
+		return @"Everyday";
+	} else {
+		[dateFormatter setDateFormat:@"EE"];
+	}
+	
+	// Add Weekday to String
+	for (int i = 0; i < [weekdays count]; i++) {
+		if ([weekdays[i] boolValue]) {
+			NSDate *date = [self getNextDateForWeekday:(i + 1) andDate:[NSDate date]];
+			[activeWeekdays addObject:[dateFormatter stringFromDate:date]];
+		}
+	}
+	
+	NSMutableString *weekdaysString = [[NSMutableString alloc] init];
+	
+	for (int i = 0; i < [activeWeekdays count] - 1; i++) {
+		[weekdaysString appendFormat:@"%@, ", activeWeekdays[i]];
+	}
+	
+	NSUInteger i = [activeWeekdays count] - 1;
+	[weekdaysString appendString:activeWeekdays[i]];
+	
+	return weekdaysString;
+}
+
+/*!
+ * @brief Moves the item in the array "items" from to the given indexnumber. Calles the method saveData after succesful movement.
+ * @param from NSInteger with the original location of the item
+ * @param to NSInteger with the desired indexnumber.
+ */
 - (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to {
+	if ((from || to) >= [self.items count]) {
+		NSLog(@"Index is out of bounds... from: %i to: %i items count: %i", from, to, [self.items count]);
+	}
+	
 	id item = self.items[from];
 	[self.items removeObjectAtIndex:from];
 	[self.items insertObject:item atIndex:to];

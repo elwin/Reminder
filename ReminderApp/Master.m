@@ -149,18 +149,25 @@ static NSString *segue = @"Segue";
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm"];
 	NSDate *date = [data.items[indexPath.row] valueForKey:kTimeKey];
-	NSMutableString *detailedString = [[NSMutableString alloc] initWithString:[dateFormatter stringFromDate:date]];
-	NSString *tempString = [data getWeekdaysFromArray:[data.items[indexPath.row] valueForKey:kWeekdayKey]];
+//	NSMutableString *detailedString = [[NSMutableString alloc] initWithString:[dateFormatter stringFromDate:date]];
+//	NSString *tempString = [data getWeekdaysFromArray:[data.items[indexPath.row] valueForKey:kWeekdayKey]];
+//	
+//	// Checks for different cases when String is Empty / Everyday active
+//	if ([tempString isEqualToString:@"Never"]) {
+//	} else if ([tempString isEqualToString:@"Everyday"]) {
+//		[detailedString appendString:@", Everyday"];
+//	} else {
+//		[detailedString appendString:@", every "];
+//		[detailedString appendString:tempString];
+//	}
+//	cell.detailedDescriptionLabel.text = detailedString;
 	
-	// Checks for different cases when String is Empty / Everyday active
-	if ([tempString isEqualToString:@"Never"]) {
-	} else if ([tempString isEqualToString:@"Everyday"]) {
-		[detailedString appendString:@", Everyday"];
-	} else {
-		[detailedString appendString:@", every "];
-		[detailedString appendString:tempString];
-	}
-	cell.detailedDescriptionLabel.text = detailedString;
+	NSArray *activeWeekdays = [data.items[indexPath.row] valueForKey:kWeekdayKey];
+	NSMutableString *timeString = [[NSMutableString alloc] initWithString:[dateFormatter stringFromDate:date]];
+	[timeString appendString:@", "];
+	[timeString appendString:[data weekdayString:activeWeekdays]];
+	
+	cell.detailedDescriptionLabel.text = timeString;
 	
 	cell.tag = indexPath.row;
 	cell.currentStateSwitch.on = [[data.items[indexPath.row] valueForKey:kActiveKey] boolValue];

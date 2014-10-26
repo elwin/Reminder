@@ -21,12 +21,14 @@ static NSString * const repeatCategoryIdentifier = @"REPEAT_CATEGORY";
 
 @interface Data : NSObject
 
-@property (strong, nonatomic) NSString *logFilePath;
+/*!
+ * @brief Contains all created Reminders stored inside a mutable array.
+ */
 @property (strong, nonatomic) NSMutableArray *items;
+
 + (instancetype)sharedClass;
 - (void)loadData;
 - (void)saveData;
-- (NSString *)dataFilePath;
 - (NSMutableDictionary *)getNewItem;
 
 - (void)scheduleNotificationForDictionary:(NSDictionary *)item;
@@ -34,7 +36,9 @@ static NSString * const repeatCategoryIdentifier = @"REPEAT_CATEGORY";
 - (void)requestPermission;
 - (void)rescheduleAllNotifications;
 
-- (NSString *)getWeekdaysFromArray:(NSArray *)weekdays;
+- (NSString *)weekdayString:(NSArray *)weekdays;
+- (NSString *)weekdayStringPlain:(NSArray *)weekdays;
+
 - (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to;
 
 @end

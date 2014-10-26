@@ -102,7 +102,7 @@ static NSString *reuseIdentifier = @"detailCell";
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	} else if (indexPath.row == 1) {
 		cell.textLabel.text = @"Repeat:";
-		cell.detailTextLabel.text = [data getWeekdaysFromArray:[self.itemDictionary valueForKey:kWeekdayKey]];
+		cell.detailTextLabel.text = [data weekdayStringPlain:[self.itemDictionary valueForKey:kWeekdayKey]];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.detailTextLabel.adjustsFontSizeToFitWidth = true;
 	}
