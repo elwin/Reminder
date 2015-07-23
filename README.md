@@ -5,4 +5,4 @@ The goal of ReminderApp is simple: it reminds you at a given time on a specific 
 
 You can get it for free in the [App Store](https://itunes.apple.com/de/app/simple-reminderapp/id922661941?mt=8).
 
-![Screenshot]("Screenshot.png")
+![Screenshot](https://raw.githubusercontent.com/nycooookie/Reminder/master/Screenshot.png)
